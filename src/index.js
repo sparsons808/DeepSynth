@@ -1,6 +1,7 @@
-const Test = require("./scripts/test.js")
+const Synth = require("./scripts/synth_skeleton.js");
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('live');
-    new Test ();
+    const el = document.querySelector("body");
+
+    new Synth(el);
 })
