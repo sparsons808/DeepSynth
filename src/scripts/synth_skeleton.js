@@ -2,33 +2,26 @@ class Synth {
     constructor (el) {
         // this.soundKit = soundKit;
         this.el = el;
-        this.setupSynth()
+        this.setupSynth();
+        this.handleClick();
         console.log('constructor is firing')
+    }
+
+    handleClick() {
+        const ele = document.querySelector("#synth-grid");
+
+        ele.addEventListener("click", (event) => {
+            event.preventDefault();
+            const row = event.target.parentElement.getAttribute("data-row");
+            const col = event.target.getAttribute("data-col");
+
+            console.log([parseInt(row), parseInt(col)]);
+        })
+        console.log(ele);
     }
 
     setupSynth() {
         console.log('setupSynth is firing')
-
-    //     const platRecord = document.createElement("div")
-    //     const div = document.createElement('div');
-
-    //     const boxes = ['moshe', 'sydney', 'yael'];
-        
-    //     document.body.innerHTML = `
-        
-    //     <ul>
-    //         <li>
-    //             <span>Hi this is a nice list</span>
-    //         </li>
-    //         <li>
-    //             <span>Hi this is a nice list</span>
-    //         </li>
-    //         <li>
-    //             <span>Hi this is a nice list</span>
-    //         </li>
-    //     </ul>
-    //     `        
-        
     }
 }
 
