@@ -73,8 +73,12 @@ class Synth {
 
                 }, 5000)
             };
-           
-            
+        });
+
+        let pause = document.querySelector(".pause")
+        pause.addEventListener('click', (e) => {
+            e.preventDefault();
+            clearInterval(intervalId);
         });
     }
 

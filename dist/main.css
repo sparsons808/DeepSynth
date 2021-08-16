@@ -74,3 +74,14 @@ table {
 .row .box.selected {
   background-color: blue;
 }
+
+.row .instrument {
+  float: left;
+  border: solid;
+  border-color: red;
+  border-width: 1px;
+  width: 100px;
+  height: inherit;
+  background-color: grey;
+  margin: 3px;
+}
