@@ -85,3 +85,8 @@ table {
   background-color: grey;
   margin: 3px;
 }
+
+.btn {
+  display: flexbox;
+  margin: 10px;
+}

@@ -54,32 +54,15 @@ class Synth {
             if(event.target.classList.contains("playing")) {
                 // will need to make 250 into a variable so that user
                 //can change the bpm 
-                intervalId = setInterval(() => {
-                    
-                    let col = 0;
-                    for (let row = 0; row < 5; row++) {
-                        if(this.soundArray[row][col] === true) {
-                            console.log([row, col]);
-                        };
-
-                        if (row === 4) row = 0;
-
-                        if (col < 15) {
-                            col += 1;
-                        } else {
-                            col = 0;
-                        };
-                    }
-
-                }, 5000)
+               
             };
         });
 
-        let pause = document.querySelector(".pause")
-        pause.addEventListener('click', (e) => {
-            e.preventDefault();
-            clearInterval(intervalId);
-        });
+        // let pause = document.querySelector(".pause")
+        // pause.addEventListener('click', (e) => {
+        //     e.preventDefault();
+        //     clearInterval(intervalId);
+        // });
     }
 
     setupSynth() {
