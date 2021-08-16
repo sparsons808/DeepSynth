@@ -70,3 +70,7 @@ table {
   background-color: grey;
   margin: 3px;
 }
+
+.row .box.selected {
+  background-color: blue;
+}
