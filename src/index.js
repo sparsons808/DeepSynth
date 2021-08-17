@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     new Synth(el);
 
     
+    
+    
     // TESTING!!
     // const syn = new Tone.Synth().toDestination();
     // syn.triggerAttackRelease("C4", "8n");

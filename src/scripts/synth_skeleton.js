@@ -51,9 +51,23 @@ class Synth {
             event.preventDefault();
             event.target.classList.toggle("playing");
             
+            
             if(event.target.classList.contains("playing")) {
-                // will need to make 250 into a variable so that user
-                //can change the bpm 
+
+                let col = 0
+                for (let row = 0; row < 5; row++) {
+                    if(this.soundArray[row][col] === true) {
+                        console.log([row, col]);
+                    };
+
+                    if (row === 4 && col !== 15) {
+                        row = 0
+                    };
+                    
+                    
+                };
+            //     // will need to make 250 into a variable so that user
+            //     //can change the bpm 
                
             };
         });
