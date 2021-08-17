@@ -5,16 +5,16 @@ class Synth {
     constructor (el) {
         // this.soundKit = soundKit;
         this.el = el;
-        this.soundArray = [
-            [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
-            [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,],
-            [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,],
-            [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,],
-            [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,]
-        ];
-        this.setupSynth();
+        // this.soundArray = [
+        //     ['C0', 'C0', 'C0', 'C0', 'C0', 'C0', 'C0', 'C0', 'C0', 'C0', 'C0', 'C0', 'C0', 'C0', 'C0', 'C0'],
+        //     ['C1', 'C1', 'C1', 'C1', 'C1', 'C1', 'C1', 'C1', 'C1', 'C1', 'C1', 'C1', 'C1', 'C1', 'C1', 'C1'],
+        //     ['C2', 'C2', 'C2', 'C2', 'C2', 'C2', 'C2', 'C2', 'C2', 'C2', 'C2', 'C2', 'C2', 'C2', 'C2', 'C2'],
+        //     ['C3', 'C3', 'C3', 'C3', 'C3', 'C3', 'C3', 'C3', 'C3', 'C3', 'C3', 'C3', 'C3', 'C3', 'C3', 'C3'],
+        //     ['C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4']
+        // ];
+        this.playPause();
         this.handleClick();
-        this.sequencer();
+        this.soundBtns();
         console.log('constructor is firing')
     }
     // handleClick toggles between activated and not activated
@@ -24,52 +24,37 @@ class Synth {
 
         ele.addEventListener("click", (event) => {
             event.preventDefault();
-            let row = event.target.parentElement.getAttribute("data-row");
-            let col = event.target.getAttribute("data-col");
+            // let row = event.target.parentElement.getAttribute("data-row");
+            // let col = event.target.getAttribute("data-col");
             event.target.classList.toggle("selected");
 
-            row = parseInt(row);
-            col = parseInt(col);
+            // row = parseInt(row);
+            // col = parseInt(col);
 
-            let value = this.soundArray[row][col];
+            // let value = this.soundArray[row][col];
 
-            if (value === false) {
-                value = true;
-            } else {
-                value = false;
-            };
+            // if (value === false) {
+            //     value = true;
+            // } else {
+            //     value = false;
+            // };
 
-            this.soundArray[row][col] = value
+            // this.soundArray[row][col] = value
 
             // console.log(this.soundArray);
         })
         
     }
 
-    sequencer() {
+    soundBtns() {
         const kick = document.querySelector(".kick")
         
         let synth1 = new Tone.Synth().toDestination();
-        let drumNotes = ['C0', 'C1', 'C2', 'C3']
-
-        Tone.Transport.scheduleRepeat(time => {
-            repeat(time);
-        }, '8n');
-
-        let index = 0
-
-        function repeat (time) {
-            let drum = drumNotes[index % drumNotes.length]
-            synth1.triggerAttackRelease( drum , '8n', time);
-            index++
-        } 
 
         kick.addEventListener('click', (event) => {
             event.preventDefault();
-            
-            Tone.Transport.start();
-
-            Tone.start();
+            synth1.triggerAttackRelease('C0', '8n');
+            Tone.Transport.stop();
         });
 
         const snare = document.querySelector(".snare");
@@ -77,7 +62,67 @@ class Synth {
         snare.addEventListener('click', (event) => {
             event.preventDefault();
             
+            synth1.triggerAttackRelease('C1', '8n');
+            Tone.Transport.stop();
+        });
+
+        const hiHate = document.querySelector(".hihat");
+
+        hiHate.addEventListener('click', (event) => {
+            event.preventDefault();
+            
+            synth1.triggerAttackRelease('C2', '8n');
+            Tone.Transport.stop();
+        });
+
+        const tom = document.querySelector(".tom");
+
+        tom.addEventListener('click', (event) => {
+            event.preventDefault();
+            
+            synth1.triggerAttackRelease('C3', '8n');
+            Tone.Transport.stop();
+        });
+
+        const cymbal = document.querySelector(".cymbal");
+
+        cymbal.addEventListener('click', (event) => {
+            event.preventDefault();
+            
             synth1.triggerAttackRelease('C4', '8n');
+            Tone.Transport.stop();
+        });
+
+    }
+
+    playPause() {
+
+       
+        const mySynths = [
+            new Tone.Synth().toDestination(),
+            new Tone.Synth().toDestination(),
+            new Tone.Synth().toDestination(),
+            new Tone.Synth().toDestination(),
+            new Tone.Synth().toDestination()
+        ]
+
+        const rows = document.querySelectorAll(".row");
+
+        const beats = ['C0', 'C1', 'C2', 'C3', 'C4'];
+
+        Tone.Transport.scheduleRepeat(loop, '8n');
+        Tone.Transport.start();
+        let idx = 0
+
+        const play = document.querySelector('.play');
+        play.addEventListener('click', (evnt) => {
+            evnt.preventDefault();
+            
+            Tone.start();
+            Tone.Transport.start();
+            
+            console.log('playing')
+            
         });
 
         const pause = document.querySelector('.pause');
@@ -85,20 +130,30 @@ class Synth {
         pause.addEventListener('click', (ev) => {
             ev.preventDefault();
             Tone.Transport.stop();
-        })
-    }
+        });
 
-    setupSynth() {
-        console.log('setupSynth is firing')
+        // Tone.Transport.start();
+
+        function loop(time) {
+            let next = idx % 16;
+
+            for (let i = 0; i < rows.length; i++) {
+                let synth = mySynths[i];
+                let beat = beats[i]
+                let row = rows[i];
+                let div = row.querySelector(`div:nth-child(${next + 1})`);
+                
+                if(div.classList.contains('selected')) {
+                    synth.triggerAttackRelease(beat, '8n', time);
+                }
+            }
+
+            idx++
+        }
+
+       
     }
 }
 
 export default Synth;
 
-// synth1.triggerAttackRelease('C4', '8n');
-
-// synth1.triggerAttackRelease('D1', '8n');
-
-// synth1.triggerAttackRelease('E#', '8n');
-
-// synth1.triggerAttackRelease('G1', '8n');
