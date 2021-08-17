@@ -1,12 +1,14 @@
-import * as Tone from 'tone'
+// import * as Tone from 'tone'
 
-const Synth = require("./scripts/synth_skeleton.js");
+import Synth from "./scripts/synth_skeleton.js"
 
 
 document.addEventListener('DOMContentLoaded', () => {
     const el = document.querySelector("body");
 
     new Synth(el);
+
+    
 
     
     
@@ -20,4 +22,4 @@ document.addEventListener('DOMContentLoaded', () => {
     //     console.log("context started");
     // });
    
-})
+});

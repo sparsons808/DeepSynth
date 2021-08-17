@@ -1,3 +1,6 @@
+
+import * as Tone from 'tone'
+
 class Synth {
     constructor (el) {
         // this.soundKit = soundKit;
@@ -44,39 +47,45 @@ class Synth {
     }
 
     sequencer() {
-        const play = document.querySelector(".play")
-        let intervalId;
+        const kick = document.querySelector(".kick")
+        
+        let synth1 = new Tone.Synth().toDestination();
+        let drumNotes = ['C0', 'C1', 'C2', 'C3']
 
-        play.addEventListener('click', (event) => {
+        Tone.Transport.scheduleRepeat(time => {
+            repeat(time);
+        }, '8n');
+
+        let index = 0
+
+        function repeat (time) {
+            let drum = drumNotes[index % drumNotes.length]
+            synth1.triggerAttackRelease( drum , '8n', time);
+            index++
+        } 
+
+        kick.addEventListener('click', (event) => {
             event.preventDefault();
-            event.target.classList.toggle("playing");
             
-            
-            if(event.target.classList.contains("playing")) {
+            Tone.Transport.start();
 
-                let col = 0
-                for (let row = 0; row < 5; row++) {
-                    if(this.soundArray[row][col] === true) {
-                        console.log([row, col]);
-                    };
-
-                    if (row === 4 && col !== 15) {
-                        row = 0
-                    };
-                    
-                    
-                };
-            //     // will need to make 250 into a variable so that user
-            //     //can change the bpm 
-               
-            };
+            Tone.start();
         });
 
-        // let pause = document.querySelector(".pause")
-        // pause.addEventListener('click', (e) => {
-        //     e.preventDefault();
-        //     clearInterval(intervalId);
-        // });
+        const snare = document.querySelector(".snare");
+
+        snare.addEventListener('click', (event) => {
+            event.preventDefault();
+            
+            synth1.triggerAttackRelease('C4', '8n');
+        });
+
+        const pause = document.querySelector('.pause');
+
+        pause.addEventListener('click', (ev) => {
+            ev.preventDefault();
+            Tone.Transport.stop();
+        })
     }
 
     setupSynth() {
@@ -84,4 +93,12 @@ class Synth {
     }
 }
 
-module.exports = Synth;
+export default Synth;
+
+// synth1.triggerAttackRelease('C4', '8n');
+
+// synth1.triggerAttackRelease('D1', '8n');
+
+// synth1.triggerAttackRelease('E#', '8n');
+
+// synth1.triggerAttackRelease('G1', '8n');
