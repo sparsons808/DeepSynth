@@ -1,5 +1,6 @@
 
 import * as Tone from 'tone'
+import { ToneEvent } from 'tone';
 
 class Synth {
     constructor (el) {
@@ -114,25 +115,25 @@ class Synth {
         Tone.Transport.start();
         let idx = 0
 
-        const play = document.querySelector('.play');
-        play.addEventListener('click', (evnt) => {
-            evnt.preventDefault();
+        const playPause = document.querySelector('#playpause');
+        const container = playPause.parentElement;
+       
+        container.addEventListener('click', (event) => {
             
-            Tone.start();
-            Tone.Transport.start();
+            if(playPause.classList.contains('play')) {
+                Tone.start();
+                Tone.Transport.start();
+                playPause.classList.toggle('play');
+                playPause.classList.toggle('pause');
+            } else if(playPause.classList.contains('pause')) {
+                Tone.Transport.stop();
+                playPause.classList.toggle('pause');
+                playPause.classList.toggle('play');
+            }
             
-            console.log('playing')
             
         });
 
-        const pause = document.querySelector('.pause');
-
-        pause.addEventListener('click', (ev) => {
-            ev.preventDefault();
-            Tone.Transport.stop();
-        });
-
-        // Tone.Transport.start();
 
         function loop(time) {
             let next = idx % 16;
