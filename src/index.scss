@@ -53,6 +53,47 @@ body {
     width: 100%;
 }
 
+header {
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+    color: seashell;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
+    height: 40px;
+    
+}
+
+h1 {
+    margin-top: 15px;
+    margin-left: 20px;
+}
+
+nav div {
+    margin-top: 15px;
+    margin-right: 20px;
+    font-size: 15px;
+    cursor: help;
+}
+
+footer {
+    // display: flexbox;
+    position: relative;
+    margin-top: 550px;
+    margin-left: 500px;
+}
+
+.trash {
+    position: relative;
+    float: right;
+    margin-top: 5px;
+    margin-right: 20px;
+    color: darkgrey;
+    font-size: 15px;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .container {
     position: absolute;
     top: 50%;
@@ -165,3 +206,4 @@ body {
     margin: 10px;
     
 }
+

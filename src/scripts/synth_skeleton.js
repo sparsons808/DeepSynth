@@ -158,19 +158,25 @@ class Synth {
 
     trash() {
         console.log('I AM GETTING RUN FRIENDS')
-        const selected = document.querySelectorAll('.box.selected');
+       
         const pausePlay = document.querySelector('#playpause');
 
-        for (let i = 0; i < selected.length; i++) {
-            selected[i].classList.remove('selected');
-        };
-        if(pausePlay.classList.contains('pause')){
-            pausePlay.classList.add('play');
-            pausePlay.classList.remove('pause');
-        }
-        
+        const trashBtn = document.querySelector('.trash');
 
-        Tone.Transport.stop();
+        trashBtn.addEventListener('click', (event) => {
+            // event.preventDefault();
+            const selected = document.querySelectorAll('.box.selected');
+            for (let i = 0; i < selected.length; i++) {
+                selected[i].classList.remove('selected');
+            };
+
+            if(pausePlay.classList.contains('pause')){
+                pausePlay.classList.add('play');
+                pausePlay.classList.remove('pause');
+            }
+            
+            Tone.Transport.stop();
+        })
 
         console.log(this)
         window.testme = this;
