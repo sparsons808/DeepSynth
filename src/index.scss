@@ -48,7 +48,9 @@ table {
 }
 
 body {
-    background-color: rgb(25, 30, 75);
+    background-color: rgb(18, 18, 59);
+    height: 100%;
+    width: 100%;
 }
 
 .container {
@@ -59,10 +61,11 @@ body {
     margin-left: -325px;
     width: 650px;
     height: 200px;
-    background-color: midnightblue;
+    background-color: rgb(18, 18, 70);
     border: solid;
     border-radius: 1%;
-    border-color: midnightblue;
+    border-color:  rgb(18, 18, 70);
+    // opacity: 0.4;
 }
 
 .playpause-container {
@@ -85,6 +88,7 @@ body {
     background-color: grey;
     margin: 3px;
     border-radius: 5%;
+    opacity: 0.3;
 }
 
 .box:hover {
@@ -106,6 +110,7 @@ body {
     margin: 3px;
     text-align: center;
     border-radius: 2%;
+    opacity: 0.5;
 }
 
 .instrument:hover {
