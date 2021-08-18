@@ -68,6 +68,40 @@ body {
     // opacity: 0.4;
 }
 
+// .play {
+//     position: absolute;
+//     background-color: darkgrey;
+//     width: 12.5px;
+//     height: 12.5px;
+//     cursor: pointer;
+//     transition: 0.3s ease-in-out;
+//     margin: 2%;
+//     margin-top: .75%;
+//     clip-path: polygon(
+//         0 0,
+//         50% 25%,
+//         50% 75%,
+//         50% 75%,
+//         50% 25%,
+//         100% 50%,
+//         100% 50%,
+//         0 100%
+//     );
+// }
+
+// .play.pause {
+//     clip-path: polygon(
+//         0 0,
+//         40% 0,
+//         40% 100%,
+//         60% 100%,
+//         60%  0,
+//         100% 0,
+//         100% 100%,
+//         0 100%
+//     );
+// }
+
 .playpause-container {
     position: relative;
     margin-left: 1%;
