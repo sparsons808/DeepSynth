@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <!-- github image from https://www.w3schools.com/icons/tryit.asp?filename=tryicons_fa-github -->
+<!-- linkedin image from https://www.w3schools.com/icons/tryit.asp?filename=tryicons_fa-linkedin-square -->
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,10 +15,23 @@
 <body>
     <header>
         <h1>DeepSynth</h1>
-        <nav>
-            <div>i</div>
-        </nav>
+        <div class="modal-button">&quest;</div>
     </header>
+
+    <div class="modal-container">
+        <div class="modal-header">
+            <div>Instructions</div>
+            <button class="close">&times;</button>
+        </div>
+        <div class="modal-body">
+            You can create a pattern,
+            by clicking on the squares below.
+            Press the triangle play button to
+            play your song. To clear the pads,
+            press the X in the right corner.
+        </div>
+    </div>
+
     <div id="synth-grid" class="container">
         <div class="playpause-container">
             <div id="playpause" class="play"></div>
@@ -27,7 +41,9 @@
         <div class="trash">X</div>
         <br>
         <div data-row="0" class="row">
-            <div class="instrument kick">Kick</div>
+            <div class="instrument kick">
+                <p class="sym">&#x266C;</p><p class="sound">Kick</p>
+            </div>
             <div id="0" class="box"></div>
             <div id="1" class="box"></div>
             <div id="2" class="box"></div>
@@ -46,7 +62,9 @@
             <div id="15" class="box"></div>
         </div>
         <div data-row="1" class="row">
-            <div class="instrument snare">Snare</div>
+            <div class="instrument snare">
+                <p class="sym">&#x266C;</p><p class="sound">Snare</p>
+            </div>
             <div id="0" class="box"></div>
             <div id="1" class="box"></div>
             <div id="2" class="box"></div>
@@ -65,7 +83,9 @@
             <div id="15" class="box"></div>
         </div>
         <div data-row="2" class="row">
-            <div class="instrument hihat">HitHat</div>
+            <div class="instrument hihat">
+                <p class="sym">&#x266C;</p><p class="sound">HitHat</p>
+            </div>
             <div id="0" class="box"></div>
             <div id="1" class="box"></div>
             <div id="2" class="box"></div>
@@ -84,7 +104,9 @@
             <div id="15" class="box"></div>
         </div>
         <div data-row="3" class="row">
-            <div class="instrument tom">Tom</div>
+            <div class="instrument tom">
+                <p class="sym">&#x266C;</p><p class="sound tom">Tom</p>
+            </div>
             <div id="0" class="box"></div>
             <div id="1" class="box"></div>
             <div id="2" class="box"></div>
@@ -103,7 +125,9 @@
             <div id="15" class="box"></div>
         </div>
         <div data-row="4" class="row">
-            <div class="instrument cymbal">Cymbal</div>
+            <div class="instrument cymbal">
+                <p class="sym">&#x266C;</p><p class="sound">Cymbal</p>
+            </div>
             <div id="0" class="box"></div>
             <div id="1" class="box"></div>
             <div id="2" class="box"></div>
@@ -122,14 +146,21 @@
             <div id="15" class="box"></div>
         </div>
     </div>
+
+    <div class="icons">
+        <div>
+            <a href="https://github.com/sparsons808" target="_blank"> 
+                <i style="font-size:24px" class="fa">&#xf09b;</i>
+            </a>
+        </div>
+    
+        <div>
+            <a href="https://www.linkedin.com/in/sydney-parsons-18929458/" target="_blank">
+                <i style="font-size: 24px;" class="fa">&#xf08c;</i>
+            </a>
+        </div>
+    </div>
     
 </body>
-<footer>
-    <nav>
-        <a href="https://github.com/sparsons808/DeepSynth">
-            <i style="font-size:24px" class="fa">&#xf09b;</i>
-        </a>
-    </nav>
-</footer>
 
 </html>

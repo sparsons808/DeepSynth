@@ -1,6 +1,7 @@
 // import * as Tone from 'tone'
 
 import Synth from "./scripts/synth_skeleton.js"
+import Modal from "./scripts/modal_control.js"
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     new Synth(el);
 
     
-
+    new Modal();
     
     
     
