@@ -16,6 +16,7 @@ class Synth {
         this.playPause();
         this.handleClick();
         this.soundBtns();
+        this.trash();
         console.log('constructor is firing')
     }
     // handleClick toggles between activated and not activated
@@ -153,6 +154,26 @@ class Synth {
         }
 
        
+    }
+
+    trash() {
+        console.log('I AM GETTING RUN FRIENDS')
+        const selected = document.querySelectorAll('.box.selected');
+        const pausePlay = document.querySelector('#playpause');
+
+        for (let i = 0; i < selected.length; i++) {
+            selected[i].classList.remove('selected');
+        };
+        if(pausePlay.classList.contains('pause')){
+            pausePlay.classList.add('play');
+            pausePlay.classList.remove('pause');
+        }
+        
+
+        Tone.Transport.stop();
+
+        console.log(this)
+        window.testme = this;
     }
 }
 
