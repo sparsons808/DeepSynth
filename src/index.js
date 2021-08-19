@@ -2,6 +2,7 @@
 
 import Synth from "./scripts/synth_skeleton.js"
 import Modal from "./scripts/modal_control.js"
+// import SoundKit from "./scripts/sound_kits.js"
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     new Synth(el);
 
+    // new SoundKit();
     
     new Modal();
     

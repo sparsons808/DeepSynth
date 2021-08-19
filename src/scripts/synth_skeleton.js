@@ -7,26 +7,12 @@ class Synth {
     constructor (el) {
         // this.soundKit = soundKit;
         this.el = el;
-        this.soundKit = []
-
-        this.soundKit1();
         this.playPause();
         this.handleClick();
         this.soundBtns();
         this.trash();
-        console.log('constructor is firing')
+        // console.log('constructor is firing')
     }
-
-    soundKit1 () {
-        for (let i = 1; i < 6; i++) {
-            let drumSound = new Tone.Player(`dist/sample_0${i}.wav`).toDestination();
-            drumSound.autostart = true;
-            this.soundKit.push(drumSound);
-
-            
-        }
-    }
-
     // handleClick toggles between activated and not activated
     handleClick() {
         const ele = document.querySelector("#synth-grid");
@@ -59,48 +45,79 @@ class Synth {
     soundBtns() {
         const kick = document.querySelector(".kick")
         
-        let synth1 = this.soundKit[1];
+        let synth1 = new Tone.MembraneSynth().toDestination();
 
         kick.addEventListener('click', (event) => {
             event.preventDefault();
-            synth1.load('dist/sample_01.wav');
-            synth1.start();
-            // Tone.Transport.stop();
+            synth1.triggerAttackRelease('C1', '8n');
+            Tone.Transport.stop();
         });
 
         const snare = document.querySelector(".snare");
 
+        const synth2 =  new Tone.MetalSynth({
+            frequency: 250,
+            envelope: {
+            attack: 0.003,
+            decay: .1,
+            release: 0.01
+            },
+            harmonicity: 3.1,
+            modulationIndex: 32,
+            resonance: 4000,
+            octaves: 1.5
+        }).toDestination();
+
         snare.addEventListener('click', (event) => {
             event.preventDefault();
             
-            synth1.triggerAttackRelease('C1', '8n');
+            synth2.triggerAttackRelease('C1', '8n');
             Tone.Transport.stop();
         });
 
         const hiHate = document.querySelector(".hihat");
 
+        const synth3 = new Tone.Synth().toDestination()
+
         hiHate.addEventListener('click', (event) => {
             event.preventDefault();
             
-            synth1.triggerAttackRelease('C2', '8n');
+            synth3.triggerAttackRelease('C2', '8n');
             Tone.Transport.stop();
         });
 
         const tom = document.querySelector(".tom");
 
+        const synth4 = new Tone.MembraneSynth({
+            pitchDecay: 0.01,
+            octaves: 10,
+            oscillator: {
+            type: 'sine'
+            },
+            envelope: {
+            attack: 0.01,
+            decay: 0.6,
+            sustain: 0.01,
+            release: 1.4,
+            attackCurve: 'exponential'
+              }
+          }).toDestination();
+
         tom.addEventListener('click', (event) => {
             event.preventDefault();
             
-            synth1.triggerAttackRelease('C3', '8n');
+            synth4.triggerAttackRelease('D3', '8n');
             Tone.Transport.stop();
         });
 
         const cymbal = document.querySelector(".cymbal");
+        const vol = new Tone.Volume(-12).toDestination();
+        const synth5 = new Tone.MetalSynth().connect(vol);
 
         cymbal.addEventListener('click', (event) => {
             event.preventDefault();
             
-            synth1.triggerAttackRelease('C4', '8n');
+            synth5.triggerAttackRelease('C4', '8n');
             Tone.Transport.stop();
         });
 
@@ -108,18 +125,43 @@ class Synth {
 
     playPause() {
 
-       
+       const vol = new Tone.Volume(-12).toDestination();
+
         const mySynths = [
+            new Tone.MembraneSynth().toDestination(),
+            new Tone.MetalSynth({
+                frequency: 250,
+                envelope: {
+                attack: 0.003,
+                decay: .1,
+                release: 0.01
+                },
+                harmonicity: 3.1,
+                modulationIndex: 32,
+                resonance: 4000,
+                octaves: 1.5
+            }).toDestination(),
             new Tone.Synth().toDestination(),
-            new Tone.Synth().toDestination(),
-            new Tone.Synth().toDestination(),
-            new Tone.Synth().toDestination(),
-            new Tone.Synth().toDestination()
+            new Tone.MembraneSynth({
+                pitchDecay: 0.01,
+                octaves: 10,
+                oscillator: {
+                type: 'sine'
+                },
+                envelope: {
+                attack: 0.01,
+                decay: 0.6,
+                sustain: 0.01,
+                release: 1.4,
+                attackCurve: 'exponential'
+                  }
+              }).toDestination(),
+            new Tone.MetalSynth().connect(vol)
         ]
 
         const rows = document.querySelectorAll(".row");
 
-        const beats = ['C0', 'C1', 'C2', 'C3', 'C4'];
+        const beats = ['C1', 'C1', 'C2', 'D3', 'C4'];
 
         Tone.Transport.scheduleRepeat(loop, '8n');
         Tone.Transport.start();
@@ -153,9 +195,11 @@ class Synth {
                 let beat = beats[i]
                 let row = rows[i];
                 let div = row.querySelector(`div:nth-child(${next + 1})`);
-                
-                if(div.classList.contains('selected')) {
+
+                if(i !== 1 && div.classList.contains('selected')) {
                     synth.triggerAttackRelease(beat, '8n', time);
+                } else if (i === 1 && div.classList.contains('selected')) {
+                    synth.triggerAttackRelease('8n');
                 }
             }
 
@@ -166,7 +210,7 @@ class Synth {
     }
 
     trash() {
-        console.log('I AM GETTING RUN FRIENDS')
+        // console.log('I AM GETTING RUN FRIENDS')
        
         const pausePlay = document.querySelector('#playpause');
 
@@ -187,8 +231,8 @@ class Synth {
             Tone.Transport.stop();
         })
 
-        console.log(this)
-        window.testme = this;
+        // console.log(this)
+        // window.testme = this;
     }
 }
 
