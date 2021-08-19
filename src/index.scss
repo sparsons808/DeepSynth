@@ -69,6 +69,52 @@ h1 {
     margin-left: 20px;
 }
 
+.b {
+    // display: flex;
+    position: absolute;
+    color: lavender;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    size: inherit;
+    background: none;
+    margin-left: 87px;
+    margin-top: 7px;
+}
+
+.bpm {
+    width: 100px;
+    height: inherit;
+    border-radius: 10px;
+    // margin-top: 3px;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    position: relative;
+    appearance: none;
+    outline: none;
+    cursor: pointer;
+
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    background-color: darkgray;
+    height: 4px;
+    border-radius: 12px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-color: lavender;
+    width: 3px;
+    height: 10px;
+    border-radius: 2px;
+    margin-top: -2.5px;
+}
+
+
 
 .modal-button {
     margin-top: 14px;
@@ -255,6 +301,7 @@ h1 {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     color: lavender;
+    cursor: pointer;
 }
 
 .instrument .sym {

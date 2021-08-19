@@ -178,7 +178,7 @@ class Synth {
                 playPause.classList.toggle('play');
                 playPause.classList.toggle('pause');
             } else if(playPause.classList.contains('pause')) {
-                Tone.Transport.stop();
+                Tone.Transport.pause();
                 playPause.classList.toggle('pause');
                 playPause.classList.toggle('play');
             }
@@ -186,6 +186,16 @@ class Synth {
             
         });
 
+        const bpmLevel = document.querySelector('.bpm');
+        let val = bpmLevel.value;
+        let bpmVal = parseInt(val);
+        Tone.Transport.bpm.value = bpmVal
+
+        bpmLevel.addEventListener('change', (event) => {
+            let rate = event.target.value;
+            bpmVal = parseInt(rate);
+            Tone.Transport.bpm.rampTo(bpmVal, 0.2);
+        })
 
         function loop(time) {
             let next = idx % 16;
