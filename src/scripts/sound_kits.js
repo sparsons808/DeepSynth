@@ -1,22 +1,21 @@
 import * as Tone from 'tone'
-class SoundKitA {
+
+class SoundKit {
     constructor () {
-        this.bassSynth = new Tone.MembraneSynth().toDestination();
-        // will use triggerAttackRelease("C1", "8n", time)
+        this.soundKit = []
 
-        this.cymbal = new Tone.MetalSynth().toDestination();
-        // will use triggerAttackRelease('32n', time, 0.3)
-
-        // this.snare = new Tone.
-
-        this.polysynth = new Tone.PolySynth(3, Tone.FMSynth);
-
-    //     this.sampler = new Tone.Players({
-    //         "kick": 'https://d'
-    //         "snare":
-    //         "hihat":
-    //     })
+        this.soundKit1();
     }
-}
+
+    soundKit1 () {
+        for (let i = 1; i < 6; i++) {
+            let drumSound = new Tone.Player(`./dist/sample_0${i}.wav`).toDestination();
+            this.soundKit.push(drumSound);
+            
+        }
+    }
+};
+
+export default SoundKit;
 
 

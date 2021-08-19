@@ -1,24 +1,32 @@
 
 import * as Tone from 'tone'
-import { ToneEvent } from 'tone';
+// import { ToneEvent } from 'tone';
+// import SoundKit from './sound_kits';
 
 class Synth {
     constructor (el) {
         // this.soundKit = soundKit;
         this.el = el;
-        // this.soundArray = [
-        //     ['C0', 'C0', 'C0', 'C0', 'C0', 'C0', 'C0', 'C0', 'C0', 'C0', 'C0', 'C0', 'C0', 'C0', 'C0', 'C0'],
-        //     ['C1', 'C1', 'C1', 'C1', 'C1', 'C1', 'C1', 'C1', 'C1', 'C1', 'C1', 'C1', 'C1', 'C1', 'C1', 'C1'],
-        //     ['C2', 'C2', 'C2', 'C2', 'C2', 'C2', 'C2', 'C2', 'C2', 'C2', 'C2', 'C2', 'C2', 'C2', 'C2', 'C2'],
-        //     ['C3', 'C3', 'C3', 'C3', 'C3', 'C3', 'C3', 'C3', 'C3', 'C3', 'C3', 'C3', 'C3', 'C3', 'C3', 'C3'],
-        //     ['C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4']
-        // ];
+        this.soundKit = []
+
+        this.soundKit1();
         this.playPause();
         this.handleClick();
         this.soundBtns();
         this.trash();
         console.log('constructor is firing')
     }
+
+    soundKit1 () {
+        for (let i = 1; i < 6; i++) {
+            let drumSound = new Tone.Player(`dist/sample_0${i}.wav`).toDestination();
+            drumSound.autostart = true;
+            this.soundKit.push(drumSound);
+
+            
+        }
+    }
+
     // handleClick toggles between activated and not activated
     handleClick() {
         const ele = document.querySelector("#synth-grid");
@@ -51,12 +59,13 @@ class Synth {
     soundBtns() {
         const kick = document.querySelector(".kick")
         
-        let synth1 = new Tone.Synth().toDestination();
+        let synth1 = this.soundKit[1];
 
         kick.addEventListener('click', (event) => {
             event.preventDefault();
-            synth1.triggerAttackRelease('C0', '8n');
-            Tone.Transport.stop();
+            synth1.load('dist/sample_01.wav');
+            synth1.start();
+            // Tone.Transport.stop();
         });
 
         const snare = document.querySelector(".snare");
