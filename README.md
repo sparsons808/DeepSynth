@@ -32,6 +32,132 @@ DeepSynth, will allow users to:
 - Canvas to build the synthesizer
 - Webpack and Bable to bundle JS code
 
+## Code Snippet
+
+'''
+  playPause() {
+
+       const vol = new Tone.Volume(-12).toDestination();
+
+        const mySynths = [
+            new Tone.MembraneSynth().toDestination(),
+            new Tone.MetalSynth({
+                frequency: 250,
+                envelope: {
+                attack: 0.003,
+                decay: .1,
+                release: 0.01
+                },
+                harmonicity: 3.1,
+                modulationIndex: 32,
+                resonance: 4000,
+                octaves: 1.5
+            }).toDestination(),
+            new Tone.Synth().toDestination(),
+            new Tone.MembraneSynth({
+                pitchDecay: 0.01,
+                octaves: 10,
+                oscillator: {
+                type: 'sine'
+                },
+                envelope: {
+                attack: 0.01,
+                decay: 0.6,
+                sustain: 0.01,
+                release: 1.4,
+                attackCurve: 'exponential'
+                  }
+              }).toDestination(),
+            new Tone.MetalSynth().connect(vol)
+        ]
+
+        const rows = document.querySelectorAll(".row");
+
+        const beats = ['C1', 'C1', 'C2', 'D3', 'C4'];
+
+        Tone.Transport.scheduleRepeat(loop, '8n');
+        Tone.Transport.start();
+        let idx = 0
+
+        const playPause = document.querySelector('#playpause');
+        const container = playPause.parentElement;
+       
+        container.addEventListener('click', (event) => {
+            
+            if(playPause.classList.contains('play')) {
+                Tone.start();
+                Tone.Transport.start();
+                playPause.classList.toggle('play');
+                playPause.classList.toggle('pause');
+            } else if(playPause.classList.contains('pause')) {
+                Tone.Transport.pause();
+                playPause.classList.toggle('pause');
+                playPause.classList.toggle('play');
+            }
+            
+            
+        });
+
+        const bpmLevel = document.querySelector('.bpm');
+        let val = bpmLevel.value;
+        let bpmVal = parseInt(val);
+        Tone.Transport.bpm.value = bpmVal
+
+        bpmLevel.addEventListener('change', (event) => {
+            let rate = event.target.value;
+            bpmVal = parseInt(rate);
+            Tone.Transport.bpm.rampTo(bpmVal, 0.2);
+        })
+
+        function loop(time) {
+            let next = idx % 16;
+
+            for (let i = 0; i < rows.length; i++) {
+                let synth = mySynths[i];
+                let beat = beats[i]
+                let row = rows[i];
+                let div = row.querySelector(`div:nth-child(${next + 1})`);
+
+                if(i !== 1 && div.classList.contains('selected')) {
+                    synth.triggerAttackRelease(beat, '8n', time);
+                } else if (i === 1 && div.classList.contains('selected')) {
+                    synth.triggerAttackRelease('8n');
+                }
+            }
+
+            idx++
+        }
+
+       
+    }
+
+    trash() {
+       
+       
+        const pausePlay = document.querySelector('#playpause');
+
+        const trashBtn = document.querySelector('.trash');
+
+        trashBtn.addEventListener('click', (event) => {
+            // event.preventDefault();
+            const selected = document.querySelectorAll('.box.selected');
+            for (let i = 0; i < selected.length; i++) {
+                selected[i].classList.remove('selected');
+            };
+
+            if(pausePlay.classList.contains('pause')){
+                pausePlay.classList.add('play');
+                pausePlay.classList.remove('pause');
+            }
+            
+            Tone.Transport.stop();
+        })
+
+        
+    }
+
+'''
+
 ## Timeline
  
  - Friday: Research Web Audio, tone.js, and canvas. Setup git repo and my project.
