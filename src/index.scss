@@ -172,15 +172,23 @@ input[type="range"]::-webkit-slider-thumb {
 
  .icons {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     position: absolute;
-    width: 100px;
-    height: 25px;
+    width: 196px;
+    height: 64px;
     top: 84%;
     left: 45%;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
     // margin-top: 550px;
     // margin-left: 500px;
 }
+
+.icons div a {
+    text-decoration: none;
+}
+
 
 .trash {
     position: relative;
@@ -344,3 +352,12 @@ input[type="range"]::-webkit-slider-thumb {
     
 }
 
+.two {
+    width: 50px;
+    filter: grayscale(1);
+}
+
+.one {
+    width: 50px;
+    filter: contrast(0.5);
+}
