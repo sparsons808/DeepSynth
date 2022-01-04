@@ -34,7 +34,8 @@ DeepSynth, will allow users to:
 
 ## Code Snippet
 
-'''javascript
+```javascript
+
   playPause() {
 
        const vol = new Tone.Volume(-12).toDestination();
@@ -156,7 +157,7 @@ DeepSynth, will allow users to:
         
     }
 
-'''
+```
 
 ## Timeline
  
