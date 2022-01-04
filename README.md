@@ -34,7 +34,7 @@ DeepSynth, will allow users to:
 
 ## Code Snippet
 
-'''
+'''javascript
   playPause() {
 
        const vol = new Tone.Volume(-12).toDestination();
